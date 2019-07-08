@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+    <title>grapevine</title>
+  </head>
+  <body>
+
+    <nav>
+      <a class="nav-links left-links" href="/">Home</a>
+      <a class="nav-links left-links" href="/notifications">Notifications</a>
+      <a class="nav-links left-links" href="/messages">Messages</a>
+      <a id="logo" href="/">grapevine</a>
+      <a class="nav-links check-user" href="/signup">Sign Up</a>
+      <a class="nav-links check-user" href="/login">Log In</a>
+      <form action="/search" method="post">
+        <input id="search-bar" type="text" placeholder="Search">
+      </form>
+    </nav>
+    <%=yield%>
+  </body>
+</html>

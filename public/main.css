@@ -1,0 +1,66 @@
+body {
+  font-family: 'Cabin', sans-serif;
+}
+nav {
+  margin-top: -8px;
+  margin-left: -8px;
+  width: 101.2%;
+  padding-bottom: 4%;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-links {
+  text-decoration: none;
+  color: #6441a4;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 17px;
+  padding-bottom: 1.1%;
+  transition: border .2s;
+}
+.left-links {
+  float: left;
+}
+
+#logo {
+  font-family: 'Oleo Script Swash Caps', cursive;
+  position: absolute;
+  left: 42%;
+  top: 1%;
+  font-size: 1.5em;
+  text-align: center;
+  text-decoration: none;
+  color: #6441a4;
+  padding: 0 15px;
+}
+
+#search-bar {
+  position: absolute;
+  top: 1.6%;
+  right: 20%;
+  border-radius: 4px;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  padding-left: .5rem;
+  /* border-color: #6641a4; */
+  background-color: rgb(240, 240, 240);
+  transition: background .25s;
+  width: 14%;
+}
+#search-bar:focus {
+  background-color: white;
+  border-color: #6441a4;
+  outline:0;
+}
+.check-user {
+  float: right;
+  padding: 0 20px;
+  right: 10%;
+  padding-bottom: 1.1%;
+}
+a:nth-child(6) {
+  margin-right: 5px !important;
+}
+.nav-links:hover {
+  border-bottom: 2px solid #6441a4;
+}

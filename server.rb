@@ -9,3 +9,15 @@ enable :sessions
 
 class User < ActiveRecord::Base
 end
+
+get "/" do
+  erb :home
+end
+
+get "/login" do
+ erb :'users/login'
+end
+
+get "/signup" do
+ erb :'users/signup'
+end

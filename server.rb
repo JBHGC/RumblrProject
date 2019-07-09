@@ -1,12 +1,18 @@
 require "sinatra"
 require "sinatra/activerecord"
+require "active_record"
 
 #LOCAL
 # ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: './database.sqlite3')
-#HEROKU
-require "active_record"
-ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
 # set :database, {adapter: "sqlite3", database: "./database.sqlite3"}
+#HEROKU
+# ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
+
+if ENV['RACK_ENV']
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+else
+  set :database, {adapter: "sqlite3", database: "database.sqlite3"}
+end
 
 enable :sessions
 
@@ -31,12 +37,22 @@ get "/signup" do
 end
 
 post "/signup" do
-  user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password], )
+  fname = params[:first_name]
+  fname.gsub(/[<>]/,'')
+  lname = params[:last_name]
+  lname.gsub(/[<>]/,'')
+  email = params[:email]
+  email.gsub(/[<>]/,'')
+  age = params[:age]
+  age.gsub(/[<>]/,'')
+  pword = params[:password]
+  pword.gsub(/[<>]/,'')
+  user = User.new(fname, lname, email, uname, pword, )
   user.save
   redirect "/"
 end
 
 get "/search" do
-  searchResults = User.find(email: 'ex')
+  searchResults = User.find_by email: 'example%'
   p searchResults
 end

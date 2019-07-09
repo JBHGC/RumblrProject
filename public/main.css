@@ -64,3 +64,11 @@ a:nth-child(6) {
 .nav-links:hover {
   border-bottom: 2px solid #6441a4;
 }
+#signup-grid {
+  display: grid;
+  grid-template: auto / 45% 45%;
+  /* grid-template-rows: 10% 7% 7% 7%; */
+}
+#how-to {
+  width: 45%;
+}

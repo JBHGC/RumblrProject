@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_202324) do
+ActiveRecord::Schema.define(version: 2019_07_09_201635) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "image_url"
-    t.integer "user_name"
-    t.string "created_at"
+    t.string "user_name"
+    t.date "created_at"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "user_name"
+    t.integer "age"
     t.string "email"
     t.string "password"
   end

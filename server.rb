@@ -23,41 +23,66 @@ get "/" do
   erb :home
 end
 
-get "/login" do
- erb :'users/login'
-end
-
-post "/login" do
-  user = User.find_by(email: params[:email], password: params[:password])
-  erb :'users/login'
-end
-
 get "/signup" do
  erb :'users/signup'
 end
 
 post "/signup" do
   fname = params[:first_name]
-  fname.gsub(/[<>@#$%^&*!]/,'').html_safe
+  fname.gsub!(/[0-9A-Za-z']/, '')
   lname = params[:last_name]
-  lname.gsub(/[<>@#$%^&*!]/,'').html_safe
+  lname.gsub!(/[0-9A-Za-z']/, '')
   uname = params[:user_name]
-  uname.gsub(/[<>@#$%^&*!]/,'').html_safe
+  uname.gsub!(/[^0-9A-Za-z_]/, '')
   email = params[:email]
-  email.gsub(/[<>#$%^&*!]/,'').html_safe
+  email.gsub!(/[0-9A-Za-z@_]/, '')
   bday = params[:birthday]
-  bday.gsub(/[<>@#$%^&*!]/,'').html_safe
+  bday.gsub!(/[^0-9A-Za-z]/, '')
   pword = params[:password]
-  strip_tags(pword)
-  @user = User.new(first_name: fname, last_name: lname, user_name: uname, birthday: bday, email: email, password: pword)
-  if @user.save
-    p "#{@user.first_name} was saved to the Database!"
-    redirect '/thanks'
+  pword.gsub(/[<>]/, '')
+  for each in params
+    if each[1] == ''
+      redirect '/signup'
+    end
   end
-  redirect "/"
+  @user = User.new(first_name: fname, last_name: lname, user_name: uname, birthday: bday, email: email, password: pword)
+  @user.save
+  p "#{@user.first_name} was saved to the Database!"
+  redirect '/thanks'
 end
 
-get "/search" do
+get '/search' do
   searchResults = User.find_by email: 'example%'
   p searchResults
+end
+
+get '/login' do
+  if session[:user_id]
+    redirect '/'
+  end
+  erb :'users/login'
+end
+
+post '/login' do
+  given_password = params['password']
+  user = User.find_by(email: params['email'])
+  if user
+    if user.password == given_password
+      p "User Authenticated Successfully!"
+      session[:user_id] = user.id
+    else
+      p "Invalid Password"
+    end
+  end
+end
+
+# DELETE request
+post '/logout' do
+  session.clear
+  p "User Logged out Successfully"
+  redirect '/'
+end
+
+get '/thanks' do
+  erb :thanks
 end

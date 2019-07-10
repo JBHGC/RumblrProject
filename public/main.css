@@ -73,9 +73,6 @@ a:nth-child(6) {
 #signup-grid {
   display: grid;
   grid-template-areas:
-  'left right'
-  'left right'
-  'left right'
   'left right';
   width: 80%;
   margin-left: 15%;

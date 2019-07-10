@@ -41,13 +41,15 @@ post "/signup" do
   fname.gsub(/[<>]/,'')
   lname = params[:last_name]
   lname.gsub(/[<>]/,'')
-  email = params[:email]
-  email.gsub(/[<>]/,'')
+  uname = params[:user_name]
+  uname.gsub(/[<>]/,'')
   age = params[:age]
   age.gsub(/[<>]/,'')
+  email = params[:email]
+  email.gsub(/[<>]/,'')
   pword = params[:password]
   pword.gsub(/[<>]/,'')
-  user = User.new(fname, lname, email, uname, pword, )
+  user = User.new(fname, lname, uname, age, email, pword)
   user.save
   redirect "/"
 end

@@ -2,11 +2,14 @@ body {
   font-family: 'Cabin', sans-serif;
 }
 nav {
+  top: 0;
+  position: sticky;
   margin-top: -8px;
   margin-left: -8px;
   width: 101.2%;
   padding-bottom: 4%;
   border-bottom: 1px solid rgba(0,0,0,0.05);
+  background-color: white;
 }
 
 .nav-links {
@@ -36,7 +39,7 @@ nav {
 
 #search-bar {
   position: absolute;
-  top: 1.6%;
+  margin-top: 0.8%;
   right: 20%;
   border-radius: 4px;
   padding-top: .2rem;
@@ -64,11 +67,26 @@ a:nth-child(6) {
 .nav-links:hover {
   border-bottom: 2px solid #6441a4;
 }
+#top-header-signup {
+  text-align: center;
+  width: 94%;
+}
 #signup-grid {
   display: grid;
-  grid-template: auto / 45% 45%;
-  /* grid-template-rows: 10% 7% 7% 7%; */
+  grid-template-areas:
+  'left right'
+  'left right'
+  'left right'
+  'left right';
+  width: 80%;
+  margin-left: 15%;
+
 }
 #how-to {
+  grid-area: left;
+  width: 45%;
+}
+#user-data {
+  grid-area: right;
   width: 45%;
 }

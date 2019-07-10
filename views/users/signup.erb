@@ -1,28 +1,43 @@
+<h1 id="top-header-signup">Log In:</h1>
 <div id="signup-grid">
   <section id="how-to">
     <div id="f-name-description">
       <h1>Enter your First Name</h1>
       <p></p>
+      <h1>Enter your Last Name</h1>
+      <p></p>
+      <br>
+      <h1>Enter your Email</h1>
+      <p></p>
+      <br>
+      <h1>Enter your Birthday</h1>
+      <p>Must be at least 13yrs old,</p>
+      <p>unless you want some bad karma.</p>
+      <h1>Enter your Password</h1>
+      <p>Make that shit secure, with:</p>
+      <li>An Uppercase Character</li>
+      <li>An Lowercase Character</li>
+      <li>An Symbol(!@#$%^&*)</li>
+      <li>An First Born Child's blood</li>
     </div>
   </section>
   <section id="user-data">
 
     <form action="/login" method="post">
-      <label>First Name</label>
-      <input type="text" name="first_name"><br>
-      <label>Last Name</label>
-      <input type="text" name="last_name"><br>
-      <label>Email</label>
-      <input type="text" name="email"><br>
-      <label>Age</label>
-      <input type="number" name="age"><br>
-      <label>Password</label>
-      <input type="password" name="password"><br>
+      <label>First Name</label><br>
+      <input type="text" name="first_name"><br><br>
+      <label>Last Name</label><br>
+      <input type="text" name="last_name"><br><br><br>
+      <label>Email</label><br>
+      <input type="text" name="email"><br><br><br><br>
+      <label>Birthday</label><br>
+      <input type="date" name="age"><br><br><br><br><br>
+      <label>Password</label><br>
+      <input type="password" name="password"><br><br><br><br>
       <p><input type="submit" value="Submit"></p>
     </form>
   </section>
 </div>
-<h1>Log In:</h1>
 
 <!--
 t.string :first_name

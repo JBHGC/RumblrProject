@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.string :user_name
-      t.integer :age
+      t.date :birthday
       t.string :email
       t.string :password
     end

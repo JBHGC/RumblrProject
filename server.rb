@@ -38,19 +38,22 @@ end
 
 post "/signup" do
   fname = params[:first_name]
-  fname.gsub(/[<>]/,'')
+  fname.gsub(/[<>@#$%^&*!]/,'').html_safe
   lname = params[:last_name]
-  lname.gsub(/[<>]/,'')
+  lname.gsub(/[<>@#$%^&*!]/,'').html_safe
   uname = params[:user_name]
-  uname.gsub(/[<>]/,'')
-  age = params[:age]
-  age.gsub(/[<>]/,'')
+  uname.gsub(/[<>@#$%^&*!]/,'').html_safe
   email = params[:email]
-  email.gsub(/[<>]/,'')
+  email.gsub(/[<>#$%^&*!]/,'').html_safe
+  bday = params[:birthday]
+  bday.gsub(/[<>@#$%^&*!]/,'').html_safe
   pword = params[:password]
-  pword.gsub(/[<>]/,'')
-  user = User.new(fname, lname, uname, age, email, pword)
-  user.save
+  strip_tags(pword)
+  @user = User.new(first_name: fname, last_name: lname, user_name: uname, birthday: bday, email: email, password: pword)
+  if @user.save
+    p "#{@user.first_name} was saved to the Database!"
+    redirect '/thanks'
+  end
   redirect "/"
 end
 

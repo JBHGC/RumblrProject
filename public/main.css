@@ -45,7 +45,6 @@ nav {
   padding-top: .2rem;
   padding-bottom: .2rem;
   padding-left: .5rem;
-  /* border-color: #6641a4; */
   background-color: rgb(240, 240, 240);
   transition: background .25s;
   width: 14%;
@@ -89,4 +88,14 @@ a:nth-child(6) {
 #user-data {
   grid-area: right;
   width: 45%;
+}
+.form-box {
+  border-radius: 3px;
+  background-color: rgb(240, 240, 240);
+  transition: background .25s;
+}
+.form-box:focus {
+  background-color: white;
+  border-color: #6441a4;
+  outline:0;
 }

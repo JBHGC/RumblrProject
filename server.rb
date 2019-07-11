@@ -19,28 +19,35 @@ enable :sessions
 class User < ActiveRecord::Base
 end
 
+class Post < ActiveRecord::Base
+end
+
 get "/" do
+  @@all_recent_posts = Post.last(20)
+  p @@all_recent_posts.class
   erb :home
 end
 
 get "/signup" do
+  if session[:user_id]
+    redirect '/'
+  end
  erb :'users/signup'
 end
 
 post "/signup" do
   fname = params[:first_name]
-  fname.gsub!(/[0-9A-Za-z']/, '')
+  fname.gsub(/[<>!@#$%^&*()-=+]/, '')
   lname = params[:last_name]
-  lname.gsub!(/[0-9A-Za-z']/, '')
+  lname.gsub(/[<>!@#$%^&*()-=+]/, '')
   uname = params[:user_name]
-  uname.gsub!(/[^0-9A-Za-z_]/, '')
+  uname.gsub(/[<>@#&]/, '')
   email = params[:email]
-  email.gsub!(/[0-9A-Za-z@_]/, '')
+  email.gsub(/[<>!#$%^&*()=+]/, '')
   bday = params[:birthday]
-  bday.gsub!(/[^0-9A-Za-z]/, '')
   pword = params[:password]
-  pword.gsub(/[<>]/, '')
   for each in params
+    p each
     if each[1] == ''
       redirect '/signup'
     end
@@ -52,8 +59,19 @@ post "/signup" do
 end
 
 get '/search' do
-  searchResults = User.find_by email: 'example%'
-  p searchResults
+  p 'Nothing was Searched'
+  redirect '/'
+end
+
+post '/search' do
+  if params[:searchtext] == ''
+    redirect '/search'
+  else
+    searchtext = params[:searchtext]
+    searchtext.gsub(/[;!*(){}<>s+]/, '')
+    search_results = Post.where('tags LIKE ?', "%#{searchtext.downcase}%")
+    p searchtext
+  end
 end
 
 get '/login' do
@@ -64,20 +82,17 @@ get '/login' do
 end
 
 post '/login' do
-  given_password = params['password']
-  user = User.find_by(email: params['email'])
-  if user
-    if user.password == given_password
-      p "User Authenticated Successfully!"
-      session[:user_id] = user.id
-    else
-      p "Invalid Password"
-    end
+  if User.find_by(email: params['email']) && User.find_by(password: params['password'])
+    user = User.find_by(email: params['email'], password: params["password"])
+    p "User Authenticated Successfully!"
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    p "Wrong Username/Password"
   end
 end
 
-# DELETE request
-post '/logout' do
+get '/logout' do
   session.clear
   p "User Logged out Successfully"
   redirect '/'
@@ -85,4 +100,21 @@ end
 
 get '/thanks' do
   erb :thanks
+end
+
+get '/createpost' do
+  if session[:user_id]
+    erb :createpost
+  else
+    redirect '/login'
+  end
+end
+
+post '/createpost' do
+  post_title = params[:title]
+  post_content = params[:content]
+  post_user = User.find(session[:user_id]).user_name
+  post_tags = params[:tags]
+  @usrPost = Post.new(title: post_title, content: post_content, user_name: post_user, tags: post_tags)
+  @usrPost.save
 end

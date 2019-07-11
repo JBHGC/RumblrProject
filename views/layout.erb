@@ -10,16 +10,22 @@
   <body>
 
     <nav>
-      <a class="nav-links left-links" href="/">Home</a>
-      <a class="nav-links left-links" href="/notifications">Notifications</a>
-      <a class="nav-links left-links" href="/messages">Messages</a>
+      <a class="nav-links left-links more-right" href="/">Home</a>
+      <%if session[:user_id]%>
+      <a class="nav-links left-links" href="/createpost">Post</a>
+      <%end%>
       <a id="logo" href="/">grapevine</a>
-      <a class="nav-links check-user" href="/signup">Sign Up</a>
+      <%if session[:user_id]%>
+      <a class="nav-links check-user a-little-off" href="/Logout">Logout</a>
+      <%else%>
+      <a class="nav-links check-user a-little-off" href="/signup">Sign Up</a>
       <a class="nav-links check-user" href="/login">Log In</a>
+      <%end%>
       <form action="/search" method="post">
-        <input id="search-bar" type="text" placeholder="Search" name="searchtext">
+        <input id="search-bar" type="text" placeholder="Search Tags" name="searchtext">
       </form>
     </nav>
     <%=yield%>
+    <footer><i id="copyright"></i></footer>
   </body>
 </html>

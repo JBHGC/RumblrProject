@@ -28,7 +28,7 @@ nav {
 #logo {
   font-family: 'Oleo Script Swash Caps', cursive;
   position: absolute;
-  left: 42%;
+  left: 45%;
   top: 12%;
   font-size: 1.5em;
   text-align: center;
@@ -80,11 +80,14 @@ a:nth-child(6) {
 }
 #how-to {
   grid-area: left;
-  width: 45%;
+  width: 70%;
 }
 #user-data {
   grid-area: right;
   width: 45%;
+}
+#home-top {
+  text-align: center;
 }
 .form-box {
   border-radius: 3px;
@@ -95,4 +98,52 @@ a:nth-child(6) {
   background-color: white;
   border-color: #6441a4;
   outline:0;
+}
+.create-form {
+  text-align: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 1%;
+  margin-bottom: auto;
+}
+.create-text-box {
+  width: 23em;
+}
+.a-little-off {
+  margin-right: 2.7%;
+}
+.more-right {
+  margin-left: 1.5%;
+}
+.post-branch {
+  background-color: brown;
+  text-align: center;
+  margin: 0;
+
+}
+.post-grid {
+  display: grid;
+  margin-left: 35%;
+  width: 30%;
+  border: 1px solid #6441a4;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+}
+.post-title {
+  text-align: center;
+  margin-bottom: 2%;
+  margin-top: 1.5%;
+}
+.post-content {
+  margin: 1%;
+  font-size: .95em;
+}
+.post-tags {
+  color: #6441a4;
+  font-size: 1.1em;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  /* width: 80%; */
 }

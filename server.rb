@@ -26,11 +26,11 @@ end
 get "/" do
   for every in @@all_recent_posts
     if every
-      break
-    else
       every.title.gsub(/[']/, '"')
       every.content.gsub(/[']/, '"')
       every.tags.gsub(/[']/, '"')
+    else
+      break
     end
   end
   p @all_recent_posts

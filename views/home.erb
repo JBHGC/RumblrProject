@@ -16,7 +16,7 @@
   <%count = 0%>
   <%for each in @@all_recent_posts.reverse%>
   <%if session[:user_id]%>
-  <%if User.find(session[:user_id]).user_name == User.find_by(user_name: each.user_name)%>
+  <%if User.find(session[:user_id]).user_name != User.find_by(user_name: each.user_name)%>
   all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
   <%else%>
   var node = document.createElement("input")

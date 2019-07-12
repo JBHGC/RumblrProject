@@ -24,6 +24,11 @@ end
 
 get "/" do
   @all_recent_posts = Post.last(20)
+  for every in @all_recent_posts
+    every.title.gsub(/[']/, '"')
+    every.content.gsub(/[']/, '"')
+    every.tags.gsub(/[']/, '"')
+  end
   erb :home
 end
 

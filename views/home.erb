@@ -1,5 +1,5 @@
 <h1 id="home-top">Your GrapeVine:</h1>
-<%for each in @all_recent_posts %>
+<%for all in @all_recent_posts %>
 <section class="post-grid">
   <h2 class="post-title"></h2>
   <h3 class="post-content"></h3>
@@ -15,13 +15,13 @@
   <%for each in @all_recent_posts%>
   <%if session[:user_id]%>
   <%if User.find(session[:user_id]).user_name == User.find_by(user_name: each.user_name)%>
-  all_titles[<%=count%>].innerText = `<%="#{each.title.gsub(/[']/, '"')}"%>`<a class="delete-this" href="#">🗑</a>
+  all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`<a class="delete-this" href="#">🗑</a>
   <%end%>
   <%else%>
-  all_titles[<%=count%>].innerText = `<%="#{each.title.gsub(/[']/, '"')}"%>`
+  all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
   <%end%>
-  all_contents[<%=count%>].innerText = `<%="#{each.content.gsub(/[']/, '"')}"%>`
-  all_tags[<%=count%>].innerText = `<%="#{each.tags.gsub(/["]/, "'")}"%>`
+  all_contents[<%=count%>].innerText = `<%="#{each.content}"%>`
+  all_tags[<%=count%>].innerText = `<%="#{each.tags}"%>`
   <%count = count + 1%>
   <%end%>
 </script>

@@ -91,7 +91,7 @@ get '/login' do
 end
 
 post '/login' do
-  if User.find_by(email: params['email']) && User.find_by(password: params['password'])
+  if User.find_by(email: params['email'], password: params['password'])
     user = User.find_by(email: params['email'], password: params["password"])
     p "User Authenticated Successfully!"
     session[:user_id] = user.id
@@ -120,16 +120,23 @@ get '/createpost' do
 end
 
 post '/createpost' do
+  count = 0
   for each in params
-    if each = ''
-      redirect '/createpost'
+    if each[1] != ""
+      count = count + 1
+      p each[1]
+      if count == 3
+        post_title = params[:title]
+        post_content = params[:content]
+        post_user = User.find(session[:user_id])
+        post_tags = params[:tags]
+        @usrPost = Post.new(title: post_title, content: post_content, user_name: post_user.user_name, tags: post_tags)
+        @usrPost.save
+        redirect '/'
+      end
     end
   end
-  post_title = params[:title]
-  post_content = params[:content]
-  post_user = User.find(session[:user_id]).user_name
-  post_tags = params[:tags]
-  @usrPost = Post.new(title: post_title, content: post_content, user_name: post_user, tags: post_tags)
-  @usrPost.save
-  redirect '/'
+  if count < 3
+    redirect 'createpost'
+  end
 end

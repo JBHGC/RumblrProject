@@ -15,7 +15,12 @@
   <%for each in @@all_recent_posts%>
   <%if session[:user_id]%>
   <%if User.find(session[:user_id]).user_name == User.find_by(user_name: each.user_name)%>
-  all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`<a class="delete-this" href="#">🗑</a>
+  all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
+  <%else%>
+  var node = document.createElement("a")
+  node.setAttribute("href", "/deletepost")
+  document.getElementsByClassName('post-grid')[<%=count%>].appendChild(node)
+  all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
   <%end%>
   <%else%>
   all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`

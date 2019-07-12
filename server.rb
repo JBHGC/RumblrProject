@@ -25,9 +25,13 @@ end
 
 get "/" do
   for every in @@all_recent_posts
-    every.title.gsub(/[']/, '"')
-    every.content.gsub(/[']/, '"')
-    every.tags.gsub(/[']/, '"')
+    if every
+      break
+    else
+      every.title.gsub(/[']/, '"')
+      every.content.gsub(/[']/, '"')
+      every.tags.gsub(/[']/, '"')
+    end
   end
   p @all_recent_posts
   erb :home

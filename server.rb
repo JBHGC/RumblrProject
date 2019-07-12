@@ -120,10 +120,16 @@ get '/createpost' do
 end
 
 post '/createpost' do
-  post_title = params[:title]
-  post_content = params[:content]
-  post_user = User.find(session[:user_id]).user_name
-  post_tags = params[:tags]
-  @usrPost = Post.new(title: post_title, content: post_content, user_name: post_user, tags: post_tags)
-  @usrPost.save
+  for each in params
+    each = ''
+    redirect '/createpost'
+  else
+    post_title = params[:title]
+    post_content = params[:content]
+    post_user = User.find(session[:user_id]).user_name
+    post_tags = params[:tags]
+    @usrPost = Post.new(title: post_title, content: post_content, user_name: post_user, tags: post_tags)
+    @usrPost.save
+    redirect '/'
+  end
 end

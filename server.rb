@@ -21,14 +21,15 @@ end
 
 class Post < ActiveRecord::Base
 end
+@@all_recent_posts = Post.last(20)
 
-@all_recent_posts = Post.last(20)
-for every in @all_recent_posts
-  every.title.gsub(/[']/, '"')
-  every.content.gsub(/[']/, '"')
-  every.tags.gsub(/[']/, '"')
-end
 get "/" do
+  for every in @@all_recent_posts
+    every.title.gsub(/[']/, '"')
+    every.content.gsub(/[']/, '"')
+    every.tags.gsub(/[']/, '"')
+  end
+  p @all_recent_posts
   erb :home
 end
 

@@ -1,10 +1,12 @@
 <h1 id="home-top">Your GrapeVine:</h1>
 <%for oneforall in @@all_recent_posts %>
-<section class="post-grid">
-  <h2 class="post-title"></h2>
-  <h3 class="post-content"></h3>
-  <h3 class="post-tags"></h3>
-</section>
+<form action="/deletepost" method="post">
+  <section class="post-grid">
+    <h2 class="post-title"></h2>
+    <h3 class="post-content"></h3>
+    <h3 class="post-tags"></h3>
+  </section>
+</form>
 <br>
 <%end%>
 <script type="text/javascript">
@@ -12,13 +14,14 @@
   all_contents = document.getElementsByClassName("post-content")
   all_tags = document.getElementsByClassName("post-tags")
   <%count = 0%>
-  <%for each in @@all_recent_posts%>
+  <%for each in @@all_recent_posts.reverse%>
   <%if session[:user_id]%>
   <%if User.find(session[:user_id]).user_name == User.find_by(user_name: each.user_name)%>
   all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
   <%else%>
-  var node = document.createElement("a")
-  node.setAttribute("href", "/deletepost")
+  var node = document.createElement("input")
+  node.setAttribute("value", "Delete This")
+  node.setAttribute("type", "submit")
   document.getElementsByClassName('post-grid')[<%=count%>].appendChild(node)
   all_titles[<%=count%>].innerText = `<%="#{each.title}"%>`
   <%end%>

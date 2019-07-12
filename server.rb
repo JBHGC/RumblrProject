@@ -140,3 +140,11 @@ post '/createpost' do
     redirect 'createpost'
   end
 end
+
+get '/deletepost' do
+  erb :home
+end
+post '/deletepost' do
+  
+  erb :home
+end

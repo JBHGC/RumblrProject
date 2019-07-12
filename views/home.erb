@@ -1,5 +1,5 @@
 <h1 id="home-top">Your GrapeVine:</h1>
-<%for each in @@all_recent_posts %>
+<%for each in @all_recent_posts %>
 <section class="post-grid">
   <h2 class="post-title"></h2>
   <h3 class="post-content"></h3>
@@ -12,7 +12,7 @@
   all_contents = document.getElementsByClassName("post-content")
   all_tags = document.getElementsByClassName("post-tags")
   <%count = 0%>
-  <%for each in @@all_recent_posts%>
+  <%for each in @all_recent_posts%>
   <%if session[:user_id]%>
   <%if User.find(session[:user_id]).user_name == User.find_by(user_name: each.user_name)%>
   all_titles[<%=count%>].innerText = `<%="#{each.title.gsub(/[']/, '"')}"%>`<a class="delete-this" href="#">🗑</a>

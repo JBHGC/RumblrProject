@@ -23,8 +23,7 @@ class Post < ActiveRecord::Base
 end
 
 get "/" do
-  @@all_recent_posts = Post.last(20)
-  p @@all_recent_posts.class
+  @all_recent_posts = Post.last(20)
   erb :home
 end
 

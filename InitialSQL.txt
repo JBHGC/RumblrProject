@@ -1,3 +1,0 @@
-INSERT INTO users (first_name, last_name, user_name, birthday, email, password)
-VALUES ('jason', 'calixto', 'bHG', '1997-12-07', 'jbhg@example.com', '12347890'),
-('samuel', 'colt', 'mag', '1960-04-05', 'emninteen@example.com', 'wonthewest')
